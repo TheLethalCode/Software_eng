@@ -3,3 +3,5 @@ SRS_IEEE_TEMPLATE.doc
 Class(domain).yuml
 Class.yuml
 UseCase.yuml
+
+*.class
