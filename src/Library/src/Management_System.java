@@ -36,7 +36,7 @@ public class Management_System extends JFrame {
 
         // Set Background Image
         try {
-            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/bg5.jpg"));
+            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/gymkhana.jpg"));
             final Image bgima = backgroundImage.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
             bg = new JPanel(new BorderLayout()) {
                 @Override
