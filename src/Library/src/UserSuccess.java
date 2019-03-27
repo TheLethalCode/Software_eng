@@ -44,13 +44,13 @@ public class UserSuccess extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblUserSection = new JLabel("User Section - JavaTpoint");
+		JLabel lblUserSection = new JLabel("User Section");
 		lblUserSection.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		JButton btnNewButton = new JButton("Check Slots");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			BooksForm.main(new String[]{});
+			// BooksForm.main(new String[]{});
 			frame.dispose();
 			}
 		});

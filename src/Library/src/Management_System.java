@@ -58,6 +58,7 @@ public class Management_System extends JFrame {
 		btnUserLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserLogin.main(new String[]{});
+				frame.dispose();
 			}
 		});
 		btnUserLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));

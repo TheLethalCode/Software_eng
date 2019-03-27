@@ -76,6 +76,14 @@ public class UserLogin extends JFrame {
 			}
 			}
 		});
+
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			GymkhanaSuccess.main(new String[]{});
+			frame.dispose();
+			}
+		});
 		
 		passwordField = new JPasswordField();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -100,6 +108,10 @@ public class UserLogin extends JFrame {
 					.addContainerGap(187, Short.MAX_VALUE)
 					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 					.addGap(151))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(200, Short.MAX_VALUE)
+					.addComponent(btnBack)
+					.addGap(169))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -115,7 +127,9 @@ public class UserLogin extends JFrame {
 						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(80, Short.MAX_VALUE))
+					.addContainerGap(80, Short.MAX_VALUE)
+					.addComponent(btnBack)
+					.addGap(19))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
