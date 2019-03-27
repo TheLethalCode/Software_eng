@@ -52,10 +52,10 @@ public class Management_System extends JFrame {
         setContentPane(bg);
 
         // Set Heading
-        JTextArea heading = new JTextArea("\n   Gymkhana Sports Management System");
-        heading.setFont(new Font("DejaVu Sans", Font.BOLD, 20));
-        heading.setForeground(new Color(172,11,243));
-        heading.setBackground(new Color(52,0,100));
+        JTextArea heading = new JTextArea("\n  Gymkhana Sports Management System");
+        heading.setFont(new Font("DejaVu Sans", Font.BOLD, 21));
+        heading.setForeground(new Color(117,111,124));
+        heading.setBackground(new Color(22,10,49));
         heading.setEditable(false);
 
         // Login Button for Gymkhana Authorities
@@ -65,7 +65,10 @@ public class Management_System extends JFrame {
 			GymkhanaLogin.main(new String[]{});
 			frame.dispose();
 			}
-		});
+        });
+        btnGymkhanaLogin.setBackground(new Color(7, 12, 8));
+        btnGymkhanaLogin.setForeground(Color.WHITE);
+        btnGymkhanaLogin.setFocusPainted(false);
 		btnGymkhanaLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
         
         // Login Button for Users
@@ -76,6 +79,9 @@ public class Management_System extends JFrame {
 				frame.dispose();
 			}
         });
+        btnUserLogin.setBackground(new Color(5, 10, 6));
+        btnUserLogin.setForeground(Color.WHITE);
+        btnUserLogin.setFocusPainted(false);
         btnUserLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
 
          
@@ -106,8 +112,8 @@ public class Management_System extends JFrame {
                     .addComponent(heading, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                     .addGap(330)
                     .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-					.addComponent(btnGymkhanaLogin, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserLogin, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnGymkhanaLogin, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUserLogin, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     )
                     .addContainerGap(40, Short.MAX_VALUE)
                 )
