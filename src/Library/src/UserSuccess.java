@@ -12,6 +12,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.*;
 
 public class UserSuccess extends JFrame {
 	static UserSuccess frame;
@@ -44,13 +45,16 @@ public class UserSuccess extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblUserSection = new JLabel("User Section");
-		lblUserSection.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JLabel lblUserSection = new JLabel("Choose your activity:");
+		lblUserSection.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		String[] sports = { "Badminton" , "Gym" , "Squash" , "Table Tennis" , "Swimming" };
+		JComboBox list = new JComboBox(sports);
 		
 		JButton btnNewButton = new JButton("Check Slots");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			// BooksForm.main(new String[]{});
+			//SlotDao.main(new String[]{});
 			frame.dispose();
 			}
 		});
@@ -101,13 +105,12 @@ public class UserSuccess extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(81, Short.MAX_VALUE)
-					.addComponent(lblUserSection)
-					.addGap(54))
+
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(132)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblUserSection, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+						.addComponent(list, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 						// .addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 						// .addComponent(btnViewIssuedBooks, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
@@ -120,8 +123,11 @@ public class UserSuccess extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblUserSection)
+					.addGap(58)
+					.addComponent(lblUserSection,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
+					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(68)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					// .addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)

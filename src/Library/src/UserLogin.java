@@ -80,7 +80,7 @@ public class UserLogin extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			GymkhanaSuccess.main(new String[]{});
+			Management_System.main(new String[]{});
 			frame.dispose();
 			}
 		});
@@ -110,8 +110,8 @@ public class UserLogin extends JFrame {
 					.addGap(151))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(200, Short.MAX_VALUE)
-					.addComponent(btnBack)
-					.addGap(169))
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+					.addGap(151))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -128,8 +128,8 @@ public class UserLogin extends JFrame {
 					.addGap(18)
 					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(80, Short.MAX_VALUE)
-					.addComponent(btnBack)
-					.addGap(19))
+					.addComponent(btnBack,GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(45))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
