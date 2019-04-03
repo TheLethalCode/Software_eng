@@ -1,21 +1,10 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
+import javax.imageio.*;
+import java.io.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class UserLogin extends JFrame {
 	static UserLogin frame;
@@ -43,94 +32,197 @@ public class UserLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public UserLogin() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
-		JLabel lblAdminLoginForm = new JLabel("User Login Form");
-		lblAdminLoginForm.setForeground(Color.GRAY);
-		lblAdminLoginForm.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
-		JLabel lblEnterName = new JLabel("Enter ID no.:");
-		
-		JLabel lblEnterPassword = new JLabel("Enter Password:");
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			String name=textField.getText();
-			String password=String.valueOf(passwordField.getPassword());
-			//System.out.println(name+" "+password);
-			if(UserDao.validate(name, password)){
-				UserSuccess.main(new String[]{});
-				frame.dispose();
-			}else{
-				JOptionPane.showMessageDialog(UserLogin.this, "Sorry, Username or Password Error","Login Error!", JOptionPane.ERROR_MESSAGE);
-				textField.setText("");
-				passwordField.setText("");
-			}
-			}
-		});
+		// Set the default close operation.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			Management_System.main(new String[]{});
-			frame.dispose();
-			}
-		});
+        // Set the bounds
+        setBounds(100,100,500,500);
+		JPanel bg;
 		
+		// Set Background Image
+        try {
+            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/encryption.jpg"));
+            final Image bgima = backgroundImage.getScaledInstance(650, 500, Image.SCALE_DEFAULT);
+            bg = new JPanel(new BorderLayout()) {
+                @Override
+                public void paintComponent(Graphics g) {
+                    g.drawImage(bgima, -100, 0, null);
+                }
+            };
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Add the panel to the frame
+        setContentPane(bg);
+		
+		// The Title
+		JLabel heading = new JLabel("User Login");
+		heading.setForeground(new Color(0,0,45));
+		heading.setFont(new Font("Tahoma", Font.BOLD, 34));
+		
+		// User Icon Label
+		ImageIcon imageIcon = new ImageIcon("images/fa-user.png");
+		Image image = imageIcon.getImage(); // transform it into image
+		Image newimg = image.getScaledInstance(30, 30,  Image.SCALE_SMOOTH); // scale it the smooth way  
+		imageIcon = new ImageIcon(newimg);
+		JLabel lblUserIcon = new JLabel(imageIcon); 
+		
+		// Key Icon Label
+		imageIcon = new ImageIcon("images/fa-key.png");
+		image = imageIcon.getImage(); // transform it into image
+		newimg = image.getScaledInstance(30, 30,  Image.SCALE_SMOOTH); // scale it the smooth way  
+		imageIcon = new ImageIcon(newimg);
+		JLabel lblKeyIcon = new JLabel(imageIcon);
+		
+		// Username TextField
+		textField = new JTextField("Enter your ID");
+		textField.setBackground(new Color(200,200,205));
+		textField.setFont(new Font("Tahoma", Font.BOLD, 20));
+		textField.setHorizontalAlignment(0);
+
+			// Adding focus listener
+			textField.addFocusListener(new FocusListener() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (textField.getText().equals("Enter your ID")) {
+						textField.setText("");
+						textField.setForeground(new Color(0,0,45));
+						textField.setFont(new Font("Tahoma", Font.BOLD, 14));
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (textField.getText().isEmpty()) {
+						textField.setForeground(new Color(45,45,80));
+						textField.setFont(new Font("Tahoma", Font.ITALIC, 12));
+						textField.setHorizontalAlignment(0);
+						textField.setText("Enter your ID");
+					}
+				}
+				});
+		
+		// Password field
 		passwordField = new JPasswordField();
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		passwordField.setBackground(new Color(200,200,205));
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 20));
+		passwordField.setHorizontalAlignment(0);
+		passwordField.setText("@@@@@");
+
+			// Adding focus listener for the password
+			passwordField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (passwordField.getText().equals("@@@@@")) {
+					passwordField.setText("");
+					passwordField.setForeground(new Color(0,0,45));
+					passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (passwordField.getText().isEmpty()) {
+					passwordField.setForeground(new Color(45,45,80));
+					passwordField.setFont(new Font("Tahoma", Font.ITALIC, 12));
+					passwordField.setHorizontalAlignment(0);
+					passwordField.setText("@@@@@");
+				}
+			}
+			});
+
+		// The Login Button
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setBackground(new Color(17, 12, 58));
+        btnLogin.setForeground(Color.WHITE);
+        btnLogin.setFocusPainted(false);
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
+
+			// Action Listener for Login Button
+			btnLogin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				String name=textField.getText();
+				String password=String.valueOf(passwordField.getPassword());
+				if(UserDao.validate(name, password)){
+					UserSuccess.main(new String[]{});
+					frame.dispose();
+				}else{
+					JOptionPane.showMessageDialog(UserLogin.this, "Wrong ID or Password","Login Error!", JOptionPane.ERROR_MESSAGE);
+					textField.setText("Enter your ID");
+					passwordField.setText("@@@@@");
+				}
+				}
+			});
+
+		// The Back Button
+		JButton btnBack = new JButton("Back");
+		btnBack.setBackground(new Color(17, 12, 58));
+        btnBack.setForeground(Color.WHITE);
+        btnBack.setFocusPainted(false);
+		btnBack.setFont(new Font("Tahoma", Font.BOLD, 14));
+
+			// Action Listener for Back Button
+			btnBack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Management_System.main(new String[]{});
+					frame.dispose();
+				}
+			});
+		
+		GroupLayout gl_contentPane = new GroupLayout(bg);
+		
+		// Set the horizontal Layout
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(124)
-							.addComponent(lblAdminLoginForm))
+							.addGap(145)
+							.addComponent(heading)
+						)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(19)
+							.addGap(121)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblEnterName)
-								.addComponent(lblEnterPassword))
-							.addGap(47)
+								.addComponent(lblUserIcon)
+								.addComponent(lblKeyIcon)
+							)
+							.addGap(14)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(passwordField)
-								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
+								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+							)
+						)
+					)
 					.addContainerGap(107, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(187, Short.MAX_VALUE)
-					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-					.addGap(151))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(200, Short.MAX_VALUE)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-					.addGap(151))
+					.addContainerGap(10, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+					)
+					.addGap(201)
+				)
 		);
+
+		// Set the vertical Layout
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblAdminLoginForm)
-					.addGap(26)
+					.addGap(10)
+					.addComponent(heading)
+					.addGap(116)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEnterName)
+						.addComponent(lblUserIcon)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(28)
+					.addGap(38)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEnterPassword)
+						.addComponent(lblKeyIcon)
 						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(50)
 					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(80, Short.MAX_VALUE)
-					.addComponent(btnBack,GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addGap(45))
+					.addGap(20)
+					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(80, Short.MAX_VALUE))
 		);
-		contentPane.setLayout(gl_contentPane);
+		bg.setLayout(gl_contentPane);
 	}
 }

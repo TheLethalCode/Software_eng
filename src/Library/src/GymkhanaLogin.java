@@ -8,7 +8,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class GymkhanaLogin extends JFrame {
 	static GymkhanaLogin frame;
-	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -77,15 +76,16 @@ public class GymkhanaLogin extends JFrame {
 		JLabel lblKeyIcon = new JLabel(imageIcon);
 		
 		// Username TextField
-		textField = new JTextField("Enter your ID");
+		textField = new JTextField("Enter username");
 		textField.setBackground(new Color(200,200,205));
 		textField.setFont(new Font("Tahoma", Font.BOLD, 20));
+		textField.setHorizontalAlignment(0);
 
 			// Adding focus listener
 			textField.addFocusListener(new FocusListener() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (textField.getText().equals("Enter your ID")) {
+					if (textField.getText().equals("Enter username")) {
 						textField.setText("");
 						textField.setForeground(new Color(0,0,45));
 						textField.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -97,7 +97,7 @@ public class GymkhanaLogin extends JFrame {
 						textField.setForeground(new Color(45,45,80));
 						textField.setFont(new Font("Tahoma", Font.ITALIC, 12));
 						textField.setHorizontalAlignment(0);
-						textField.setText("Enter your ID");
+						textField.setText("Enter username");
 					}
 				}
 				});
@@ -147,7 +147,7 @@ public class GymkhanaLogin extends JFrame {
 					frame.dispose();
 				}else{
 					JOptionPane.showMessageDialog(GymkhanaLogin.this, "Wrong Username or Password","Login Error!", JOptionPane.ERROR_MESSAGE);
-					textField.setText("Enter your ID");
+					textField.setText("Enter username");
 					passwordField.setText("@@@@@");
 				}
 				}
