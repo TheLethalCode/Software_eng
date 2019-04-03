@@ -30,6 +30,9 @@ public class Management_System extends JFrame {
 
     Management_System()
     {
+        // Set the default close operation.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         // Set the bounds
         setBounds(100,100,500,500);
         JPanel bg;
