@@ -78,7 +78,7 @@ public class GymkhanaLogin extends JFrame {
 		// Username TextField
 		textField = new JTextField("Enter username");
 		textField.setBackground(new Color(200,200,205));
-		textField.setFont(new Font("Tahoma", Font.BOLD, 20));
+		textField.setFont(new Font("Tahoma", Font.BOLD, 14));
 		textField.setHorizontalAlignment(0);
 
 			// Adding focus listener
@@ -105,7 +105,7 @@ public class GymkhanaLogin extends JFrame {
 		// Password field
 		passwordField = new JPasswordField();
 		passwordField.setBackground(new Color(200,200,205));
-		passwordField.setFont(new Font("Tahoma", Font.BOLD, 20));
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
 		passwordField.setHorizontalAlignment(0);
 		passwordField.setText("@@@@@");
 
@@ -123,7 +123,7 @@ public class GymkhanaLogin extends JFrame {
 			public void focusLost(FocusEvent e) {
 				if (passwordField.getText().isEmpty()) {
 					passwordField.setForeground(new Color(45,45,80));
-					passwordField.setFont(new Font("Tahoma", Font.ITALIC, 12));
+					passwordField.setFont(new Font("Tahoma", Font.ITALIC, 14));
 					passwordField.setHorizontalAlignment(0);
 					passwordField.setText("@@@@@");
 				}
@@ -212,11 +212,11 @@ public class GymkhanaLogin extends JFrame {
 					.addGap(116)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblUserIcon)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addGap(38)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblKeyIcon)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addGap(50)
 					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)

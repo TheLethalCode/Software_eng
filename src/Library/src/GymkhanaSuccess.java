@@ -42,7 +42,7 @@ public class GymkhanaSuccess extends JFrame {
         // Set Background Image
         try {
             Image backgroundImage = javax.imageio.ImageIO.read(new File("images/gymkhanaSuccess1.jpg"));
-            final Image bgima = backgroundImage.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+            final Image bgima = backgroundImage.getScaledInstance(700, 500, Image.SCALE_DEFAULT);
             bg = new JPanel(new BorderLayout()) {
                 @Override
                 public void paintComponent(Graphics g) {

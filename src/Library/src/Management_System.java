@@ -65,7 +65,8 @@ public class Management_System extends JFrame {
         JButton btnGymkhanaLogin = new JButton("Admin Login");
 		btnGymkhanaLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			GymkhanaLogin.main(new String[]{});
+            // GymkhanaLogin.main(new String[]{});
+            UserForm.main(new String[]{});
 			frame.dispose();
 			}
         });
