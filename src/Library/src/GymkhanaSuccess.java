@@ -1,17 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
+import javax.imageio.*;
+import java.io.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.sql.*;
 
@@ -39,81 +31,131 @@ public class GymkhanaSuccess extends JFrame {
 	 * Create the frame.
 	 */
 	public GymkhanaSuccess() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 371);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
-		JLabel lblGymkhanaSection = new JLabel("Gymkhana Section");
-		lblGymkhanaSection.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblGymkhanaSection.setForeground(Color.GRAY);
-		
-		JButton btnNewButton = new JButton("Add User");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			UserForm.main(new String[]{});
-			frame.dispose();
-			}
-		});
-		
-		JButton btnDeleteUser = new JButton("Delete User");
-		btnDeleteUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			DeleteUser.main(new String[]{});
-			frame.dispose();
-			}
-		});
-		btnDeleteUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
+		// Set Default close operation
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Set the bounds
+        setBounds(100,100,500,500);
+        JPanel bg;
+
+        // Set Background Image
+        try {
+            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/gymkhanaSuccess1.jpg"));
+            final Image bgima = backgroundImage.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+            bg = new JPanel(new BorderLayout()) {
+                @Override
+                public void paintComponent(Graphics g) {
+                    g.drawImage(bgima, 0, 0, null);
+                }
+            };
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Add the panel to the frame
+        setContentPane(bg);
+
+        // Set Heading
+        JLabel heading = new JLabel("Administrative Actions");
+		heading.setForeground(new Color(224,224,224));
+		heading.setFont(new Font("Tahoma", Font.BOLD, 31));
+
+		// button for adding new user
+		JButton btnNewButton = new JButton("Add User");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnNewButton.setBackground(new Color(25, 22, 28));
+        btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFocusPainted(false);
 		
-		JButton btnModifySlot = new JButton("Modify Slot");
-		btnModifySlot.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			ModifySlot.main(new String[]{});
-			}
-		});
-		btnModifySlot.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JButton btnLogout = new JButton("Logout");
-		btnLogout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Management_System.main(new String[]{});
+			// Action Listener for the button
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				UserForm.main(new String[]{});
 				frame.dispose();
-			}
-		});
-		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+				}
+			});
+		
+		// button for deleting user 
+		JButton btnDeleteUser = new JButton("Delete User");
+		btnDeleteUser.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnDeleteUser.setBackground(new Color(25, 22, 28));
+        btnDeleteUser.setForeground(Color.WHITE);
+		btnDeleteUser.setFocusPainted(false);
+
+			// Action listener for the button	
+			btnDeleteUser.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				DeleteUser.main(new String[]{});
+				frame.dispose();
+				}
+			});
+		
+		// button for modifying slots
+		JButton btnModifySlot = new JButton("Modify Slot");
+		btnModifySlot.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnModifySlot.setBackground(new Color(25, 22, 28));
+        btnModifySlot.setForeground(Color.WHITE);
+		btnModifySlot.setFocusPainted(false);
+
+			// action listener for the button
+			btnModifySlot.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				ModifySlot.main(new String[]{});
+				}
+			});
+		
+		// button for logout
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnLogout.setBackground(new Color(25, 22, 28));
+        btnLogout.setForeground(Color.WHITE);
+		btnLogout.setFocusPainted(false);
+
+			// Action listener for the button
+			btnLogout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Management_System.main(new String[]{});
+					frame.dispose();
+				}
+			});
+
+		// Sets the background layout for the panel
+		GroupLayout gl_contentPane = new GroupLayout(bg);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(150, Short.MAX_VALUE)
-					.addComponent(lblGymkhanaSection, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-					.addGap(123))
+					.addGap(45)
+					.addComponent(heading)
+				)
 				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addGap(134)
+					.addGap(160)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnDeleteUser, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnModifySlot, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(109, Short.MAX_VALUE))
+						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnDeleteUser, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnModifySlot, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					)
+					.addContainerGap(109, Short.MAX_VALUE)
+				)
 		);
+
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblGymkhanaSection, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnModifySlot, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnDeleteUser, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addGap(30)
+					.addComponent(heading, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(51)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(38)
+					.addComponent(btnModifySlot, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(38)
+					.addComponent(btnDeleteUser, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(38)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE)
+				)
 		);
-		contentPane.setLayout(gl_contentPane);
+		bg.setLayout(gl_contentPane);
 	}
 }
