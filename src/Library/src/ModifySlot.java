@@ -41,55 +41,23 @@ public class ModifySlot extends JFrame {
 	 * Create the frame.
 	 */
 	public ModifySlot() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
-		// contentPane = new JPanel();
-		// contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		// contentPane.setLayout(new BorderLayout(0, 0));
-		// setContentPane(contentPane);
-		// String data[][]=null;
-		// String column[]=null;
-		// try{
-		// 	Connection con=DB.getConnection();
-		// 	PreparedStatement ps=con.prepareStatement("select * from librarian",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-		// 	ResultSet rs=ps.executeQuery();
-			
-		// 	ResultSetMetaData rsmd=rs.getMetaData();
-		// 	int cols=rsmd.getColumnCount();
-		// 	column=new String[cols];
-		// 	for(int i=1;i<=cols;i++){
-		// 		column[i-1]=rsmd.getColumnName(i);
-		// 	}
-			
-		// 	rs.last();
-		// 	int rows=rs.getRow();
-		// 	rs.beforeFirst();
 
-		// 	data=new String[rows][cols];
-		// 	int count=0;
-		// 	while(rs.next()){
-		// 		for(int i=1;i<=cols;i++){
-		// 			data[count][i-1]=rs.getString(i);
-		// 		}
-		// 		count++;
-		// 	}
-		// 	con.close();
-		// }catch(Exception e){System.out.println(e);}
+		// Set Default close operation
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// table = new JTable(data,column);
-		// JScrollPane sp=new JScrollPane(table);
+		// Setting the bounds of the GUI
+		setBounds(100, 100, 500, 500);
 		
-		// contentPane.add(sp, BorderLayout.CENTER);
 		JPanel bg;
 		
 		// Set Background Image
         try {
             Image backgroundImage = javax.imageio.ImageIO.read(new File("images/allsports.jpg"));
-            final Image bgima = backgroundImage.getScaledInstance(635, 500, Image.SCALE_DEFAULT);
+            final Image bgima = backgroundImage.getScaledInstance(750, 500, Image.SCALE_DEFAULT);
             bg = new JPanel(new BorderLayout()) {
                 @Override
                 public void paintComponent(Graphics g) {
-                    g.drawImage(bgima, 0, 0, null);
+                    g.drawImage(bgima, -120, 0, null);
                 }
             };
         } catch (IOException e) {
@@ -100,18 +68,18 @@ public class ModifySlot extends JFrame {
         setContentPane(bg);
 		
 		// Heading Label
-		JLabel heading = new JLabel("         Modify Slot");
+		JLabel heading = new JLabel("Update Slot Booking");
 		heading.setForeground(new Color(200,250,230));
 		heading.setFont(new Font("Tahoma", Font.BOLD, 28));
 		
 		// The ComboBox of all possible sports
 		String[] sports = { "--- Choose Activity ---", "Badminton" , "Gym" , "Squash" , "Table Tennis" , "Swimming", "Tennis", "BasketBall" };
 		JComboBox list = new JComboBox(sports);
-		list.setBackground(new Color(43,54,54));
-		list.setForeground(new Color(210,180,180));
+		list.setBackground(new Color(200,250,214));
+		list.setForeground(new Color(10,0,18));
 		
 		// Check Slots button
-		JButton slotCheck = new JButton("Modify Slots");
+		JButton slotCheck = new JButton("Update Slot");
 		slotCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex() != 0){
@@ -121,20 +89,20 @@ public class ModifySlot extends JFrame {
 			}
 		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
-		slotCheck.setBackground(new Color(17, 12, 18));
-		slotCheck.setForeground(Color.WHITE);
+		slotCheck.setBackground(new Color(180,180,240));
+		slotCheck.setForeground(Color.BLACK);
 		
-		// Logout Button
-		JButton btnLogout = new JButton("Logout");
+		// Back Button
+		JButton btnLogout = new JButton("Back");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Management_System.main(new String[]{});
+				GymkhanaSuccess.main(new String[]{});
 				frame.dispose();
 			}
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnLogout.setBackground(new Color(17, 12, 18));
-		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(new Color(180,180,240));
+		btnLogout.setForeground(Color.BLACK);
 
 		// Horizontal and Vertical layout for the panel
 		GroupLayout gl_contentPane = new GroupLayout(bg);
@@ -143,15 +111,18 @@ public class ModifySlot extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(70)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(heading)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(15)
+							.addComponent(heading)
+						)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(85)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(list, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(26)
+									.addGap(30)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 										.addComponent(slotCheck)
 									)
 								)
@@ -170,9 +141,9 @@ public class ModifySlot extends JFrame {
 					.addGap(58)
 					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(188)
-					.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 				)
 		);
 		bg.setLayout(gl_contentPane);
