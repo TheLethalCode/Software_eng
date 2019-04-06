@@ -101,7 +101,8 @@ public class GymkhanaSuccess extends JFrame {
 			// action listener for the button
 			btnModifySlot.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-				ModifySlot.main(new String[]{});
+					ModifySlot.main(new String[]{});
+					frame.dispose();
 				}
 			});
 		
