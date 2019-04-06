@@ -110,26 +110,40 @@ public class GymkhanaLogin extends JFrame {
 		passwordField.setText("@@@@@");
 
 			// Adding focus listener for the password
-			passwordField.addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (passwordField.getText().equals("@@@@@")) {
-					passwordField.setText("");
-					passwordField.setForeground(new Color(0,0,45));
-					passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
-				}
+		passwordField.addFocusListener(new FocusListener() {
+		@Override
+		public void focusGained(FocusEvent e) {
+			if (passwordField.getText().equals("@@@@@")) {
+				passwordField.setText("");
+				passwordField.setForeground(new Color(0,0,45));
+				passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
 			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (passwordField.getText().isEmpty()) {
-					passwordField.setForeground(new Color(45,45,80));
-					passwordField.setFont(new Font("Tahoma", Font.ITALIC, 14));
-					passwordField.setHorizontalAlignment(0);
+		}
+		@Override
+		public void focusLost(FocusEvent e) {
+			if (passwordField.getText().isEmpty()) {
+				passwordField.setForeground(new Color(45,45,80));
+				passwordField.setFont(new Font("Tahoma", Font.ITALIC, 14));
+				passwordField.setHorizontalAlignment(0);
+				passwordField.setText("@@@@@");
+			}
+		}
+		});
+
+		passwordField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name=textField.getText();
+				String password=String.valueOf(passwordField.getPassword());
+				if(name.equals("admin") && password.equals("admin123")){
+					GymkhanaSuccess.main(new String[]{});
+					frame.dispose();
+				}else{
+					JOptionPane.showMessageDialog(GymkhanaLogin.this, "Wrong Username or Password","Login Error!", JOptionPane.ERROR_MESSAGE);
+					textField.setText("Enter username");
 					passwordField.setText("@@@@@");
 				}
-			}
-			});
-
+				}
+		});
 		// The Login Button
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBackground(new Color(17, 12, 58));
