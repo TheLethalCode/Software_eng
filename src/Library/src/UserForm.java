@@ -155,7 +155,7 @@ public class UserForm extends JFrame {
 			});
 		
 		// Email TextField
-		JTextField textFieldEmail = new JTextField("Enter Email Id");
+		JTextField textFieldEmail = new JTextField("Enter Email ID");
 		textFieldEmail.setBackground(new Color(200,200,205));
 		textFieldEmail.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textFieldEmail.setHorizontalAlignment(0);
@@ -182,7 +182,7 @@ public class UserForm extends JFrame {
 				});
 		
 		// Stakeholder Code TextField
-		JTextField textFieldID = new JTextField("Enter Id");
+		JTextField textFieldID = new JTextField("Enter ID");
 		textFieldID.setBackground(new Color(200,200,205));
 		textFieldID.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textFieldID.setHorizontalAlignment(0);

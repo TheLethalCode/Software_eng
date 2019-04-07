@@ -73,7 +73,7 @@ public class ModifySlot extends JFrame {
 		heading.setFont(new Font("Tahoma", Font.BOLD, 28));
 		
 		// The ComboBox of all possible sports
-		String[] sports = { "--- Choose Activity ---", "Badminton" , "Gym" , "Squash" , "Table Tennis" , "Swimming", "Tennis", "BasketBall" };
+		String[] sports = { "--- Choose Activity ---", "Badminton" , "Gym" , "Squash" , "Table Tennis" , "Swimming", "Tennis", "Basket Ball" };
 		JComboBox list = new JComboBox(sports);
 		list.setBackground(new Color(200,250,214));
 		list.setForeground(new Color(10,0,18));
@@ -88,24 +88,46 @@ public class ModifySlot extends JFrame {
 		JButton slotCheck = new JButton("Update Slot");
 		slotCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(list.getSelectedIndex() != 0){
-
+				if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
+				{
+					int ret = SlotDao.update(list.getSelectedItem().toString(),1,list_slot.getSelectedIndex());
+					if(ret == 1)
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this,"Slot updated successfully!");
+					}
+					else if(ret == 0)
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, slot is not available!");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!");
+					}
 				}
-				frame.dispose();
 			}
 		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
 		slotCheck.setBackground(new Color(180,180,240));
 		slotCheck.setForeground(Color.BLACK);
 		
-		//clear slots button
+		// Clear slots button
 		JButton clearSlots = new JButton("Clear Slot");
 		clearSlots.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex() != 0){
-
+					if(list.getSelectedIndex() != 0)
+					{
+						int ret = SlotDao.update(list.getSelectedItem().toString(),-1,list_slot.getSelectedIndex());
+						if(ret == 1)
+						{
+							JOptionPane.showMessageDialog(ModifySlot.this,"Slots cleared succesfully!");
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error clearing!");
+						}
+					}
 				}
-				frame.dispose();
 			}
 		});
 		clearSlots.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -141,7 +163,7 @@ public class ModifySlot extends JFrame {
 								.addComponent(list, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 								.addComponent(list_slot, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(30)
+									.addGap(20)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 										.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
@@ -164,7 +186,7 @@ public class ModifySlot extends JFrame {
 					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(list_slot,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(148)
+					.addGap(108)
 					.addComponent(slotCheck,GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
