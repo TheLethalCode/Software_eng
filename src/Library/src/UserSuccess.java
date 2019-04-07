@@ -73,9 +73,9 @@ public class UserSuccess extends JFrame {
 		slotCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex() != 0){
-
+					DisplaySlot.main(new String[]{ list.getSelectedItem().toString()});
+					frame.dispose();
 				}
-				frame.dispose();
 			}
 		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));

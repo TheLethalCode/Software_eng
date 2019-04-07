@@ -78,7 +78,7 @@ public class UserLogin extends JFrame {
 		// Username TextField
 		textField = new JTextField("Enter your ID");
 		textField.setBackground(new Color(200,200,205));
-		textField.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.setHorizontalAlignment(0);
 
 			// Adding focus listener
