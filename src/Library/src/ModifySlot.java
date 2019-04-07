@@ -77,6 +77,12 @@ public class ModifySlot extends JFrame {
 		JComboBox list = new JComboBox(sports);
 		list.setBackground(new Color(200,250,214));
 		list.setForeground(new Color(10,0,18));
+
+		// The ComboBox of all possible slots
+		String[] slots = { "--- Choose Slot ---", "Slot 1" , "Slot 2" , "Slot 3" , "Slot 4" , "Slot 5" };
+		JComboBox list_slot = new JComboBox(slots);
+		list_slot.setBackground(new Color(200,250,214));
+		list_slot.setForeground(new Color(10,0,18));
 		
 		// Check Slots button
 		JButton slotCheck = new JButton("Update Slot");
@@ -92,6 +98,20 @@ public class ModifySlot extends JFrame {
 		slotCheck.setBackground(new Color(180,180,240));
 		slotCheck.setForeground(Color.BLACK);
 		
+		//clear slots button
+		JButton clearSlots = new JButton("Clear Slot");
+		clearSlots.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.getSelectedIndex() != 0){
+
+				}
+				frame.dispose();
+			}
+		});
+		clearSlots.setFont(new Font("Tahoma", Font.BOLD, 15));
+		clearSlots.setBackground(new Color(180,180,240));
+		clearSlots.setForeground(Color.BLACK);
+
 		// Back Button
 		JButton btnLogout = new JButton("Back");
 		btnLogout.addActionListener(new ActionListener() {
@@ -119,11 +139,13 @@ public class ModifySlot extends JFrame {
 							.addGap(85)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(list, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+								.addComponent(list_slot, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(30)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-										.addComponent(slotCheck)
+										.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+										.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+										.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 									)
 								)
 							)
@@ -140,10 +162,14 @@ public class ModifySlot extends JFrame {
 					.addComponent(heading)
 					.addGap(58)
 					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(188)
-					.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addComponent(list_slot,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(148)
+					.addComponent(slotCheck,GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 				)
 		);
 		bg.setLayout(gl_contentPane);
