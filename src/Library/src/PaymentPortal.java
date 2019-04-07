@@ -17,7 +17,7 @@ public class PaymentPortal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new PaymentPortal();
+					frame = new PaymentPortal(args[0]);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class PaymentPortal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PaymentPortal() {
+	public PaymentPortal(String sport) {
 
 		// Set the default close operation.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,7 +195,7 @@ public class PaymentPortal extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(PaymentPortal.this,"Payment Successful!");
-				GymkhanaSuccess.main(new String[]{});
+				DisplaySlot.main(new String[]{sport});
 				frame.dispose();	
 
 				}
@@ -211,7 +211,7 @@ public class PaymentPortal extends JFrame {
 			// Focus Listener
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				GymkhanaSuccess.main(new String[]{});
+				DisplaySlot.main(new String[]{sport});
 				frame.dispose();
 				}
 			});

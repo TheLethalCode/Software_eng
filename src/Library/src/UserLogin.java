@@ -78,7 +78,7 @@ public class UserLogin extends JFrame {
 		// Username TextField
 		textField = new JTextField("Enter your ID");
 		textField.setBackground(new Color(200,200,205));
-		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textField.setHorizontalAlignment(0);
 
 			// Adding focus listener
@@ -129,20 +129,25 @@ public class UserLogin extends JFrame {
 				}
 			}
 			});
+
 			passwordField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String name=textField.getText();
-				String password=String.valueOf(passwordField.getPassword());
-				if(UserDao.validate(name, password)){
-					UserSuccess.main(new String[]{});
-					frame.dispose();
-				}else{
-					JOptionPane.showMessageDialog(UserLogin.this, "Wrong ID or Password","Login Error!", JOptionPane.ERROR_MESSAGE);
-					textField.setText("Enter your ID");
-					passwordField.setText("@@@@@");
-				}
+				public void actionPerformed(ActionEvent e) {
+					String name=textField.getText();
+					String password=String.valueOf(passwordField.getPassword());
+					if(UserDao.validate(name, password)){
+						UserSuccess.main(new String[]{});
+						frame.dispose();
+					}else{
+						JOptionPane.showMessageDialog(UserLogin.this, "Wrong ID or Password","Login Error!", JOptionPane.ERROR_MESSAGE);
+				
+						textField.setText("Enter your ID");
+						textField.setFont(new Font("Tahoma", Font.ITALIC, 12));
+
+						passwordField.setText("@@@@@");
+					}
 				}
 			});
+
 		// The Login Button
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBackground(new Color(17, 12, 58));
@@ -160,7 +165,10 @@ public class UserLogin extends JFrame {
 					frame.dispose();
 				}else{
 					JOptionPane.showMessageDialog(UserLogin.this, "Wrong ID or Password","Login Error!", JOptionPane.ERROR_MESSAGE);
+					
 					textField.setText("Enter your ID");
+					textField.setFont(new Font("Tahoma", Font.ITALIC, 12));
+					
 					passwordField.setText("@@@@@");
 				}
 				}

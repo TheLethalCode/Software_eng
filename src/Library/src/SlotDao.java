@@ -40,33 +40,26 @@ public class SlotDao {
 		}catch(Exception e){System.out.println(e);}
 	}
 
-	public static int save(String name,String password,String email,String id_no,String residence,String contact){
-		int status=0;
+	public static int[] check(String sport)
+	{
+		int slot_vac[] = new int[]{0,0,0,0,0};
 		try{
 			Connection con=DB.getConnection();
-			PreparedStatement ps=con.prepareStatement("insert into USER(name,password,email,id_no,residence,contact) values(?,?,?,?,?,?)");
-			ps.setString(1,name);
-			ps.setString(2,password);
-			ps.setString(3,email);
-			ps.setString(4,id_no);
-			ps.setString(5,residence);
-			ps.setString(6,contact);
-			status=ps.executeUpdate();
+			PreparedStatement ps=con.prepareStatement("select * from SLOT where sport=?");
+			ps.setString(1, sport);
+			ResultSet rs = ps.executeQuery();
+			while( rs.next() )
+			{
+				slot_vac = new int[]{rs.getInt("sl1"),rs.getInt("sl2"),rs.getInt("sl3"),rs.getInt("sl4"),rs.getInt("sl5")};
+			}
 			con.close();
-		}catch(Exception e){System.out.println(e);}
-		return status;
-	}
-	
-	public static int delete(int id){
-		int status=0;
-		try{
-			Connection con=DB.getConnection();
-			PreparedStatement ps=con.prepareStatement("delete from User where id_no=?");
-			ps.setInt(1,id);
-			status=ps.executeUpdate();
-			con.close();
-		}catch(Exception e){System.out.println(e);}
-		return status;
+			return slot_vac;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return slot_vac;
 	}
 
 	// 0 means slot not available

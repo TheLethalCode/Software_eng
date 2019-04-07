@@ -100,43 +100,43 @@ public class DisplaySlot extends JFrame {
 		/* All TextAreas */
 
         // For Slot 1
-        JTextArea slot1 = new JTextArea(" 1");
+        JTextArea slot1 = new JTextArea();
         slot1.setEditable(false);
         slot1.setFont(new Font("Arial",Font.BOLD,30));
         slot1.setForeground(Color.black);
-        slot1.setBackground(Color.red);
+        slot1.setBackground(Color.green);
         slot1.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // For Slot 2
-        JTextArea slot2 = new JTextArea(" 2");
+        JTextArea slot2 = new JTextArea();
         slot2.setEditable(false);
         slot2.setFont(new Font("Arial",Font.BOLD,30));
         slot2.setForeground(Color.black);
-        slot2.setBackground(Color.red);
+        slot2.setBackground(Color.green);
         slot2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // For Slot 1
-        JTextArea slot3 = new JTextArea(" 1");
+        // For Slot 3
+        JTextArea slot3 = new JTextArea();
         slot3.setEditable(false);
         slot3.setFont(new Font("Arial",Font.BOLD,30));
         slot3.setForeground(Color.black);
-        slot3.setBackground(Color.red);
+        slot3.setBackground(Color.green);
         slot3.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // For Slot 1
-        JTextArea slot4 = new JTextArea(" 1");
+        // For Slot 4
+        JTextArea slot4 = new JTextArea();
         slot4.setEditable(false);
         slot4.setFont(new Font("Arial",Font.BOLD,30));
         slot4.setForeground(Color.black);
-        slot4.setBackground(Color.red);
+        slot4.setBackground(Color.green);
         slot4.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // For Slot 1
-        JTextArea slot5 = new JTextArea(" 0");
+        // For Slot 5
+        JTextArea slot5 = new JTextArea();
         slot5.setEditable(false);
         slot5.setFont(new Font("Arial",Font.BOLD,30));
         slot5.setForeground(Color.black);
-        slot5.setBackground(Color.red);
+        slot5.setBackground(Color.green);
         slot5.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		/* All Buttons */
@@ -151,7 +151,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot1Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    // PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport});
                     frame.dispose();
 				}
             });
@@ -166,7 +166,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot2Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    // PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport});
                     frame.dispose();
 				}
             });
@@ -181,7 +181,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot3Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    // PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport});
                     frame.dispose();
 				}
             });
@@ -196,7 +196,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot4Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    // PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport});
                     frame.dispose();
 				}
             });
@@ -207,15 +207,62 @@ public class DisplaySlot extends JFrame {
 		slot5Button.setForeground(Color.WHITE);
 		slot5Button.setFocusPainted(false);
         slot5Button.setFont(new Font("Tahoma", Font.BOLD, 14));
-        slot5Button.setEnabled(false);
 
 			// Action Listener for the button
 			slot5Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    // PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport});
                     frame.dispose();
 				}
 			});
+		
+		// Getting data from the database
+		int slots[] = SlotDao.check(sport);
+		
+		slot1.setText(" "+slots[0]);
+		if( slots[0] == 0)
+		{
+			slot1.setBackground(Color.RED);
+			slot1Button.setEnabled(false);
+		}
+		else if( slots[0] < 3)
+			slot1.setBackground(Color.ORANGE);
+
+		slot2.setText(" "+slots[1]);
+		if( slots[1] == 0)
+		{
+			slot2.setBackground(Color.RED);
+			slot2Button.setEnabled(false);
+		}
+		else if( slots[1] < 3)
+			slot2.setBackground(Color.ORANGE);
+
+		slot3.setText(" "+slots[2]);
+		if( slots[2] == 0)
+		{
+			slot3.setBackground(Color.RED);
+			slot3Button.setEnabled(false);
+		}
+		else if( slots[2] < 3)
+			slot3.setBackground(Color.ORANGE);
+
+		slot4.setText(" "+slots[3]);
+		if( slots[3] == 0)
+		{
+			slot4.setBackground(Color.RED);
+			slot4Button.setEnabled(false);
+		}
+		else if( slots[3] < 3)
+			slot4.setBackground(Color.ORANGE);
+
+		slot5.setText(" "+slots[4]);
+		if( slots[4] == 0)
+		{
+			slot5.setBackground(Color.RED);
+			slot5Button.setEnabled(false);
+		}
+		else if( slots[4] < 3)
+			slot5.setBackground(Color.ORANGE);
 		
 		// Back button
 		JButton btnBack = new JButton("Back");
@@ -227,7 +274,7 @@ public class DisplaySlot extends JFrame {
 			// Focus Listener
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				GymkhanaSuccess.main(new String[]{});
+				UserSuccess.main(new String[]{});
 				frame.dispose();
 				}
 			});
@@ -238,7 +285,7 @@ public class DisplaySlot extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(130)
+					.addGap(110)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblNumber2)
 						.addComponent(lblnumber1)
@@ -246,7 +293,7 @@ public class DisplaySlot extends JFrame {
 						.addComponent(lblNumber4)
 						.addComponent(lblNumber5)
                     )
-                    .addGap(30)
+                    .addGap(40)
                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
                         .addComponent(slot1, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                         .addComponent(slot2, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
@@ -254,7 +301,7 @@ public class DisplaySlot extends JFrame {
                         .addComponent(slot4, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
 						.addComponent(slot5, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     )
-                    .addGap(30)
+                    .addGap(70)
                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
                         .addComponent(slot1Button, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                         .addComponent(slot2Button, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
@@ -265,7 +312,7 @@ public class DisplaySlot extends JFrame {
 					.addContainerGap(107, Short.MAX_VALUE)
 				)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(110)
+					.addGap(120)
 					.addComponent(heading)
 					.addGap(144)
 				)
@@ -326,7 +373,7 @@ public class DisplaySlot extends JFrame {
                         .addComponent(slot5Button, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					)
 					
-					.addGap(25)
+					.addGap(32)
 					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 				)
 		);
