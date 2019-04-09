@@ -151,7 +151,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot1Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport,"1"});
                     frame.dispose();
 				}
             });
@@ -166,7 +166,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot2Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport,"2"});
                     frame.dispose();
 				}
             });
@@ -181,7 +181,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot3Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport,"3"});
                     frame.dispose();
 				}
             });
@@ -196,7 +196,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot4Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport,"4"});
                     frame.dispose();
 				}
             });
@@ -211,7 +211,7 @@ public class DisplaySlot extends JFrame {
 			// Action Listener for the button
 			slot5Button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-                    PaymentPortal.main(new String[]{sport});
+                    PaymentPortal.main(new String[]{sport,"5"});
                     frame.dispose();
 				}
 			});
@@ -274,8 +274,12 @@ public class DisplaySlot extends JFrame {
 			// Focus Listener
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				UserSuccess.main(new String[]{});
-				frame.dispose();
+					int input = JOptionPane.showConfirmDialog(DisplaySlot.this, "Do you want to go back ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						UserSuccess.main(new String[]{});
+						frame.dispose();
+					}
 				}
 			});
 
@@ -283,7 +287,7 @@ public class DisplaySlot extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(bg);
 
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(110)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
@@ -314,15 +318,14 @@ public class DisplaySlot extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(120)
 					.addComponent(heading)
-					.addGap(144)
 				)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(slot1Button, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
 					.addGap(250)
 				)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(400)
 					.addComponent(btnBack)
-					.addGap(40)
 				)
 		);
 

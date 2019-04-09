@@ -247,21 +247,26 @@ public class UserForm extends JFrame {
 			// Action Listener for the button
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String name=textFieldName.getText();
-					String password=String.valueOf(passwordField.getPassword());
-					String email=textFieldEmail.getText();
-					String id_no=textFieldID.getText();
-					String residence = new String("Dummy");
-					String contact=textFieldContact.getText();
 
-					int i=UserDao.save(name, password, email, id_no, residence, contact);
-					if(i>0){
-						JOptionPane.showMessageDialog(UserForm.this,"User added successfully!");
-						GymkhanaSuccess.main(new String[]{});
-						frame.dispose();	
-					}
-					else{
-						JOptionPane.showMessageDialog(UserForm.this,"Sorry, unable to save!");
+					int input = JOptionPane.showConfirmDialog(UserForm.this, "Do you really want to add this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						String name=textFieldName.getText();
+						String password=String.valueOf(passwordField.getPassword());
+						String email=textFieldEmail.getText();
+						String id_no=textFieldID.getText();
+						String residence = new String("Dummy");
+						String contact=textFieldContact.getText();
+
+						int i=UserDao.save(name, password, email, id_no, residence, contact);
+						if(i>0){
+							JOptionPane.showMessageDialog(UserForm.this,"User added successfully!");
+							GymkhanaSuccess.main(new String[]{});
+							frame.dispose();	
+						}
+						else{
+							JOptionPane.showMessageDialog(UserForm.this,"Sorry, unable to save!");
+						}
 					}
 				}
 			});
@@ -275,9 +280,14 @@ public class UserForm extends JFrame {
 
 			// Focus Listener
 			btnBack.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				GymkhanaSuccess.main(new String[]{});
-				frame.dispose();
+				public void actionPerformed(ActionEvent e) 
+				{
+					int input = JOptionPane.showConfirmDialog(UserForm.this, "Do you want to really quit in between ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						GymkhanaSuccess.main(new String[]{});
+						frame.dispose();
+					}
 				}
 			});
 

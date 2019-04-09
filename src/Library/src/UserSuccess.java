@@ -76,6 +76,10 @@ public class UserSuccess extends JFrame {
 					DisplaySlot.main(new String[]{ list.getSelectedItem().toString()});
 					frame.dispose();
 				}
+				else
+				{
+					JOptionPane.showMessageDialog(UserSuccess.this, "Please choose an activity from the drop down list","Error!", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -86,8 +90,12 @@ public class UserSuccess extends JFrame {
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Management_System.main(new String[]{});
-				frame.dispose();
+				int input = JOptionPane.showConfirmDialog(UserSuccess.this, "Do you want to really logout ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+				if( input == 0)
+				{
+					Management_System.main(new String[]{});
+					frame.dispose();
+				}
 			}
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));

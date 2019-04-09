@@ -70,7 +70,7 @@ public class DeleteUser extends JFrame {
 		JLabel lblIDIcon = new JLabel(imageIcon);
 
 		// Stakeholder Code TextField
-		JTextField textFieldID = new JTextField("Enter Id");
+		JTextField textFieldID = new JTextField("Enter ID");
 		textFieldID.setBackground(new Color(200,200,205));
 		textFieldID.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textFieldID.setHorizontalAlignment(0);
@@ -104,17 +104,24 @@ public class DeleteUser extends JFrame {
 		btnDelete.setFocusPainted(false);
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String sid=textField.getText();
-				if(sid==null||sid.trim().equals("")){
-					JOptionPane.showMessageDialog(DeleteUser.this,"Id can't be blank");
-				}else{
-					int id=Integer.parseInt(sid);
-					int i=UserDao.delete(id);
-					if(i>0){
-						JOptionPane.showMessageDialog(DeleteUser.this,"Record deleted successfully!");
-					}else{
-						JOptionPane.showMessageDialog(DeleteUser.this,"Unable to delete given id!");
+			public void actionPerformed(ActionEvent e) 
+			{
+				String sid=textFieldID.getText();
+				if(sid.trim().equals("Enter ID")){
+					JOptionPane.showMessageDialog(DeleteUser.this,"Id can't be blank","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					int input = JOptionPane.showConfirmDialog(DeleteUser.this, "Do you want to really delete this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						String id=sid.trim();
+						int i=UserDao.delete(id);
+						if(i>0){
+							JOptionPane.showMessageDialog(DeleteUser.this,"Record deleted successfully!");
+						}else{
+							JOptionPane.showMessageDialog(DeleteUser.this,"Given ID doesn't exist!");
+						}
 					}
 				}
 			}

@@ -116,8 +116,12 @@ public class GymkhanaSuccess extends JFrame {
 			// Action listener for the button
 			btnLogout.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Management_System.main(new String[]{});
-					frame.dispose();
+					int input = JOptionPane.showConfirmDialog(GymkhanaSuccess.this, "Do you want to really logout ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						Management_System.main(new String[]{});
+						frame.dispose();
+					}
 				}
 			});
 

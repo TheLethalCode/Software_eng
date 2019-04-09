@@ -39,12 +39,12 @@ public class UserDao {
 		}catch(Exception e){System.out.println(e);}
 		return status;
 	}
-	public static int delete(int id){
+	public static int delete(String id){
 		int status=0;
 		try{
 			Connection con=DB.getConnection();
 			PreparedStatement ps=con.prepareStatement("delete from User where id_no=?");
-			ps.setInt(1,id);
+			ps.setString(1,id);
 			status=ps.executeUpdate();
 			con.close();
 		}catch(Exception e){System.out.println(e);}

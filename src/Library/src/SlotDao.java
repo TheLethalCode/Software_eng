@@ -73,7 +73,7 @@ public class SlotDao {
 			Connection con=DB.getConnection();
 			if( task == -1)
 			{
-				PreparedStatement ps=con.prepareStatement("UPDATE SLOT set sl1 = 10, sl2 = 10, sl3 = 10, sl4 = 10, sl5 = 10  where sport=?");
+				PreparedStatement ps=con.prepareStatement("UPDATE SLOT set sl1 = 9, sl2 = 9, sl3 = 9, sl4 = 9, sl5 = 9  where sport=?");
 				ps.setString(1,sport);
 				if( ps.executeUpdate() == 0)
 				{

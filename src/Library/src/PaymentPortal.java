@@ -17,7 +17,7 @@ public class PaymentPortal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new PaymentPortal(args[0]);
+					frame = new PaymentPortal(args[0],args[1]);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class PaymentPortal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PaymentPortal(String sport) {
+	public PaymentPortal(String sport,String slot) {
 
 		// Set the default close operation.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class PaymentPortal extends JFrame {
 		
 		// The Title
 		JLabel heading = new JLabel("Payment Portal");
-		heading.setForeground(new Color(110,150,110));
+		heading.setForeground(Color.black);
 		heading.setFont(new Font("Tahoma", Font.BOLD, 34));
 		
 		
@@ -65,8 +65,9 @@ public class PaymentPortal extends JFrame {
 		
 		// Username TextField
 		JTextField textFieldName = new JTextField("Account Holder Name");
-		textFieldName.setBackground(new Color(200,200,205));
+		textFieldName.setBackground(new Color(150,150,155));
 		textFieldName.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		textFieldName.setForeground(new Color(45,45,45));
 		textFieldName.setHorizontalAlignment(0);
 
 			// Adding focus listener
@@ -75,7 +76,7 @@ public class PaymentPortal extends JFrame {
 				public void focusGained(FocusEvent e) {
 					if (textFieldName.getText().equals("Account Holder Name")) {
 						textFieldName.setText("");
-						textFieldName.setForeground(new Color(0,0,45));
+						textFieldName.setForeground(new Color(0,0,0));
 						textFieldName.setFont(new Font("Tahoma", Font.BOLD, 14));
 					}
 				}
@@ -90,10 +91,11 @@ public class PaymentPortal extends JFrame {
 				}
 				});
 
-		//account number
+		// Account number
 		JTextField textFieldNumber = new JTextField("Account Number");
-		textFieldNumber.setBackground(new Color(200,200,205));
+		textFieldNumber.setBackground(new Color(150,150,155));
 		textFieldNumber.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		textFieldNumber.setForeground(new Color(45,45,45));
 		textFieldNumber.setHorizontalAlignment(0);
 
 			// Adding focus listener
@@ -117,25 +119,27 @@ public class PaymentPortal extends JFrame {
 				}
 				});
 
-		//amount
-		JTextField textFieldAmount = new JTextField("Rupees 500/-");
-		textFieldAmount.setBackground(new Color(200,200,205));
-		textFieldAmount.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		// Amount
+		JTextField textFieldAmount = new JTextField("Rs. 500/-");
+		textFieldAmount.setBackground(new Color(150,150,155));
+		textFieldAmount.setForeground(Color.BLACK);
+		textFieldAmount.setFont(new Font("Tahoma", Font.BOLD, 14));
 		textFieldAmount.setHorizontalAlignment(0);
 		textFieldAmount.setEditable(false);
 			
 		
-		//account cvv
-		JTextField textFieldCVV = new JTextField("Account CVV");
-		textFieldCVV.setBackground(new Color(200,200,205));
+		// Branch Name
+		JTextField textFieldCVV = new JTextField("Branch Name");
+		textFieldCVV.setBackground(new Color(150,150,155));
 		textFieldCVV.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textFieldCVV.setHorizontalAlignment(0);
-
+		textFieldCVV.setForeground(new Color(45,45,45));
+			
 			// Adding focus listener
 			textFieldCVV.addFocusListener(new FocusListener() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (textFieldCVV.getText().equals("Account CVV")) {
+					if (textFieldCVV.getText().equals("Branch Name")) {
 						textFieldCVV.setText("");
 						textFieldCVV.setForeground(new Color(0,0,45));
 						textFieldCVV.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -147,7 +151,7 @@ public class PaymentPortal extends JFrame {
 						textFieldCVV.setForeground(new Color(45,45,80));
 						textFieldCVV.setFont(new Font("Tahoma", Font.ITALIC, 12));
 						textFieldCVV.setHorizontalAlignment(0);
-						textFieldCVV.setText("Account CVV");
+						textFieldCVV.setText("Branch Name");
 					}
 				}
 				});
@@ -156,9 +160,10 @@ public class PaymentPortal extends JFrame {
 		
 		// IFSC TextField
 		JTextField textFieldIFSC = new JTextField("Enter IFSC");
-		textFieldIFSC.setBackground(new Color(200,200,205));
+		textFieldIFSC.setBackground(new Color(150,150,155));
 		textFieldIFSC.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		textFieldIFSC.setHorizontalAlignment(0);
+		textFieldIFSC.setForeground(new Color(45,45,45));
 
 			// Adding focus listener
 			textFieldIFSC.addFocusListener(new FocusListener() {
@@ -194,10 +199,15 @@ public class PaymentPortal extends JFrame {
 			// Action Listener for the button
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(PaymentPortal.this,"Payment Successful!");
-				DisplaySlot.main(new String[]{sport});
-				frame.dispose();	
-
+					
+					int input = JOptionPane.showConfirmDialog(PaymentPortal.this, "Do you want to book Slot " + slot + " for "+sport+ " ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						SlotDao.update(sport,1,Integer.parseInt(slot));
+						JOptionPane.showMessageDialog(PaymentPortal.this,"Payment Successful!");
+						DisplaySlot.main(new String[]{sport});
+						frame.dispose();	
+					}
 				}
 			});
 		
@@ -211,8 +221,12 @@ public class PaymentPortal extends JFrame {
 			// Focus Listener
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				DisplaySlot.main(new String[]{sport});
-				frame.dispose();
+					int input = JOptionPane.showConfirmDialog(PaymentPortal.this, "Do you want to really quit the payment portal?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						DisplaySlot.main(new String[]{sport});
+						frame.dispose();
+					}
 				}
 			});
 
@@ -243,16 +257,10 @@ public class PaymentPortal extends JFrame {
 					.addGap(250)
 				)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(205)
+					.addGap(400)
 					.addComponent(btnBack)
-					.addGap(40)
 				)
 		);
-		// addComponent(textFieldName, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-		// .addComponent(textFieldNumber, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-		// .addComponent(textFieldAmount, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-		// .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-		// .addComponent(textFieldIFSC
 
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -261,32 +269,32 @@ public class PaymentPortal extends JFrame {
 					.addGap(15)
 					.addComponent(heading)
 					
-					.addGap(30)
+					.addGap(25)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(textFieldName, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addGap(30)
-							.addComponent(textFieldNumber, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textFieldName, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+							.addGap(25)
+							.addComponent(textFieldNumber, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 						)
 					)
 					
-					.addGap(30)
+					.addGap(25)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						// .addComponent(lblEmailIcon)
-						.addComponent(textFieldAmount, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldAmount, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					)
 
-					.addGap(30)
+					.addGap(25)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						// .addComponent(lblIDIcon)
-						.addComponent(textFieldCVV, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldCVV, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					)
 
-					.addGap(30)
+					.addGap(25)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						// .addComponent(lblPhoneIcon)
-						.addComponent(textFieldIFSC, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldIFSC, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					)
 
 					.addGap(40)
