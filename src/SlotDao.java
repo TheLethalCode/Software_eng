@@ -93,7 +93,7 @@ public class SlotDao {
 				return 1;
 			}
 	  
-			// Update for the particular slot
+			// book for the particular slot
 			else if(task  == 1)
 			{
 				PreparedStatement ps=con.prepareStatement("select * from SLOT where sport=?");
@@ -212,6 +212,135 @@ public class SlotDao {
 				else if( slot == 5)
 				{
 					ps=con.prepareStatement("UPDATE SLOT set sl5 = sl5 - 1 where sport=?");
+					ps.setString(1,sport);
+					if(ps.executeUpdate() == 0)
+					{
+						con.close();
+						return -1;
+					}
+					con.close();
+					return 1;
+				}
+			}
+			//cancel task
+			else if(task  == 2)
+			{
+				PreparedStatement ps=con.prepareStatement("select * from SLOT where sport=?");
+				ps.setString(1,sport);
+				ResultSet rs=ps.executeQuery();
+
+				// Check if there are vacancies
+				while ( rs.next() ) 
+				{
+					if(slot == 1)
+					{
+						int number_vacant = rs.getInt("sl1");
+						if( number_vacant == 9)
+						{
+							rs.close();
+							con.close();
+							return 2;
+						}
+					}
+					else if(slot == 2)
+					{
+						int number_vacant = rs.getInt("sl2");
+						if( number_vacant == 9)
+						{
+							rs.close();
+							con.close();
+							return 2;
+						}
+					}
+					else if(slot == 3)
+					{
+						int number_vacant = rs.getInt("sl3");
+						if( number_vacant == 9)
+						{
+							rs.close();
+							con.close();
+							return 2;
+						}
+					}
+					else if(slot == 4)
+					{
+						int number_vacant = rs.getInt("sl4");
+						if( number_vacant == 9)
+						{
+							rs.close();
+							con.close();
+							return 2;
+						}
+					}
+					else if(slot == 5)
+					{
+						int number_vacant = rs.getInt("sl5");
+						if( number_vacant == 9)
+						{
+							rs.close();
+							con.close();
+							return 2;
+						}
+					}
+				}
+				rs.close();
+
+				// Handle the update and decrease vacancy by 1
+				if( slot == 1)
+				{
+					ps=con.prepareStatement("UPDATE SLOT set sl1 = sl1 + 1 where sport=?");
+					ps.setString(1,sport);
+					if(ps.executeUpdate() == 0)
+					{
+						con.close();
+						return -1;
+					}
+					con.close();
+					return 1;
+				}
+
+				else if( slot == 2)
+				{
+					ps=con.prepareStatement("UPDATE SLOT set sl2 = sl2 + 1 where sport=?");
+					ps.setString(1,sport);
+					if(ps.executeUpdate() == 0)
+					{
+						con.close();
+						return -1;
+					}
+					con.close();
+					return 1;
+				}
+
+				else if( slot == 3)
+				{
+					ps=con.prepareStatement("UPDATE SLOT set sl3 = sl3 + 1 where sport=?");
+					ps.setString(1,sport);
+					if(ps.executeUpdate() == 0)
+					{
+						con.close();
+						return -1;
+					}
+					con.close();
+					return 1;
+				}
+
+				else if( slot == 4)
+				{
+					ps=con.prepareStatement("UPDATE SLOT set sl4 = sl4 + 1 where sport=?");
+					ps.setString(1,sport);
+					if(ps.executeUpdate() == 0)
+					{
+						con.close();
+						return -1;
+					}
+					con.close();
+					return 1;
+				}
+
+				else if( slot == 5)
+				{
+					ps=con.prepareStatement("UPDATE SLOT set sl5 = sl5 + 1 where sport=?");
 					ps.setString(1,sport);
 					if(ps.executeUpdate() == 0)
 					{

@@ -85,7 +85,18 @@ public class ModifySlot extends JFrame {
 		JComboBox list_slot = new JComboBox(slots);
 		list_slot.setBackground(new Color(200,250,214));
 		list_slot.setForeground(new Color(10,0,18));
-		
+
+		//Radio Buttons
+		JRadioButton book = new JRadioButton(); 
+		book.setText("Book"); 
+		// book.setBackground(new Color(200,250,214));
+		// book.setForeground(new Color(10,0,18));
+
+		JRadioButton cancel = new JRadioButton(); 
+		cancel.setText("Cancel"); 
+		// cancel.setBackground(new Color(200,250,214));
+		// cancel.setForeground(new Color(10,0,18));
+
 		// Check Slots button
 		JButton slotCheck = new JButton("Update Slot");
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -96,10 +107,18 @@ public class ModifySlot extends JFrame {
 			slotCheck.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					// If Activity and Slot is chosen, increase slot by 1
-					if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
+					if(cancel.isSelected() && book.isSelected())
 					{
-						int ret = SlotDao.update(list.getSelectedItem().toString(),1,list_slot.getSelectedIndex());
+						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose only one type of updation","Error!", JOptionPane.ERROR_MESSAGE);	
+					}
+					// If Activity and Slot is chosen, increase slot by 1
+					else if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
+					{
+						int ret = 10;
+						if(cancel.isSelected())
+							ret = SlotDao.update(list.getSelectedItem().toString(),2,list_slot.getSelectedIndex());
+						else if(book.isSelected())
+							ret = SlotDao.update(list.getSelectedItem().toString(),1,list_slot.getSelectedIndex());
 						if(ret == 1)
 						{
 							JOptionPane.showMessageDialog(ModifySlot.this,"Slot updated successfully!");
@@ -107,6 +126,10 @@ public class ModifySlot extends JFrame {
 						else if(ret == 0)
 						{
 							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, slot is not available!");
+						}
+						else if(ret == 2)
+						{
+							JOptionPane.showMessageDialog(ModifySlot.this,"Slots are all empty, can't cancel!");
 						}
 						else
 						{
@@ -117,7 +140,11 @@ public class ModifySlot extends JFrame {
 					{
 						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to update slots","Error!", JOptionPane.ERROR_MESSAGE);
 					}
-					else
+					else if(!cancel.isSelected() && !book.isSelected())
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose type of updation","Error!", JOptionPane.ERROR_MESSAGE);	
+					}
+					else if(list_slot.getSelectedIndex() == 0)
 					{
 						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose a slot to update","Error!", JOptionPane.ERROR_MESSAGE);
 					}
@@ -196,6 +223,8 @@ public class ModifySlot extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(20)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(book, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+										.addComponent(cancel, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 										.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 										.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 									)
@@ -218,11 +247,15 @@ public class ModifySlot extends JFrame {
 					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(list_slot,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(108)
+					.addGap(68)
+					.addComponent(book,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addComponent(cancel,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
 					.addComponent(slotCheck,GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(48)
+					.addGap(28)
 					.addComponent(btnLogout)
 				)
 		);
