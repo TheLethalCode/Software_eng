@@ -135,10 +135,15 @@ public class DeleteUser extends JFrame {
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 14));
 
 			// Action Listener
-			btnBack.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				GymkhanaSuccess.main(new String[]{});
-				frame.dispose();
+			btnBack.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) 
+				{
+					int input = JOptionPane.showConfirmDialog(DeleteUser.this, "Do you want to really go back?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						GymkhanaSuccess.main(new String[]{});
+						frame.dispose();
+					}
 				}
 			});
 		

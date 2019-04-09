@@ -104,6 +104,14 @@ public class ModifySlot extends JFrame {
 						JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!");
 					}
 				}
+				else if(list.getSelectedIndex() == 0)
+				{
+					JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to update slots","Error!", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(ModifySlot.this, "Please choose a slot to update","Error!", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -144,8 +152,12 @@ public class ModifySlot extends JFrame {
 		JButton btnLogout = new JButton("Back");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GymkhanaSuccess.main(new String[]{});
-				frame.dispose();
+				int input = JOptionPane.showConfirmDialog(ModifySlot.this, "Do you want to really go back? " ,"Are you sure?",JOptionPane.YES_NO_OPTION);
+				if( input == 0)
+				{
+					GymkhanaSuccess.main(new String[]{});
+					frame.dispose();
+				}
 			}
 		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));

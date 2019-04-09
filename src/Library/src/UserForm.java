@@ -248,24 +248,49 @@ public class UserForm extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					int input = JOptionPane.showConfirmDialog(UserForm.this, "Do you really want to add this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
-					if( input == 0)
-					{
-						String name=textFieldName.getText();
-						String password=String.valueOf(passwordField.getPassword());
-						String email=textFieldEmail.getText();
-						String id_no=textFieldID.getText();
-						String residence = new String("Dummy");
-						String contact=textFieldContact.getText();
+					
 
-						int i=UserDao.save(name, password, email, id_no, residence, contact);
-						if(i>0){
-							JOptionPane.showMessageDialog(UserForm.this,"User added successfully!");
-							GymkhanaSuccess.main(new String[]{});
-							frame.dispose();	
-						}
-						else{
-							JOptionPane.showMessageDialog(UserForm.this,"Sorry, unable to save!");
+					String name=textFieldName.getText();
+					String password=String.valueOf(passwordField.getPassword());
+					String email=textFieldEmail.getText();
+					String id_no=textFieldID.getText();
+					String residence = new String("Dummy");
+					String contact=textFieldContact.getText();
+
+					if(name.trim().equals("Enter username"))
+					{
+						JOptionPane.showMessageDialog(UserForm.this,"Name can't be blank","Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else if(password.trim().equals("@@@@@"))
+					{
+						JOptionPane.showMessageDialog(UserForm.this,"Password can't be the default one","Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else if(!email.trim().contains("@"))
+					{
+						JOptionPane.showMessageDialog(UserForm.this,"Not a valid email","Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else if(id_no.trim().equals("Enter ID"))
+					{
+						JOptionPane.showMessageDialog(UserForm.this,"User ID can't be blank","Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else if(!contact.trim().matches("[0-9]+") || contact.trim().length() < 7)
+					{
+						JOptionPane.showMessageDialog(UserForm.this,"Not a valid contact number","Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else
+					{
+						int input = JOptionPane.showConfirmDialog(UserForm.this, "Do you really want to add this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+						if( input == 0)
+						{
+							int i=UserDao.save(name, password, email, id_no, residence, contact);
+							if(i>0){
+								JOptionPane.showMessageDialog(UserForm.this,"User added successfully!");
+								GymkhanaSuccess.main(new String[]{});
+								frame.dispose();	
+							}
+							else{
+								JOptionPane.showMessageDialog(UserForm.this,"Sorry, unable to save!");
+							}
 						}
 					}
 				}
