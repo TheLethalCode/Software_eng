@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.sql.*;
 
+// The class responsible for the payments for the booking
+
 public class PaymentPortal extends JFrame {
 	static PaymentPortal frame;
 
@@ -200,6 +202,7 @@ public class PaymentPortal extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
+					// Confirmation Dialog Box
 					int input = JOptionPane.showConfirmDialog(PaymentPortal.this, "Do you want to book Slot " + slot + " for "+sport+ " ?","Are you sure?",JOptionPane.YES_NO_OPTION);
 					if( input == 0)
 					{
@@ -221,6 +224,8 @@ public class PaymentPortal extends JFrame {
 			// Focus Listener
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
+					// Confirmation Dialog Box
 					int input = JOptionPane.showConfirmDialog(PaymentPortal.this, "Do you want to really quit the payment portal?","Are you sure?",JOptionPane.YES_NO_OPTION);
 					if( input == 0)
 					{

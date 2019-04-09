@@ -19,6 +19,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 
+// Class responsible for modifying the slots and its booking
+
 public class ModifySlot extends JFrame {
 	static ModifySlot frame;
 	private JPanel contentPane;
@@ -86,83 +88,94 @@ public class ModifySlot extends JFrame {
 		
 		// Check Slots button
 		JButton slotCheck = new JButton("Update Slot");
-		slotCheck.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
-				{
-					int ret = SlotDao.update(list.getSelectedItem().toString(),1,list_slot.getSelectedIndex());
-					if(ret == 1)
-					{
-						JOptionPane.showMessageDialog(ModifySlot.this,"Slot updated successfully!");
-					}
-					else if(ret == 0)
-					{
-						JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, slot is not available!");
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!");
-					}
-				}
-				else if(list.getSelectedIndex() == 0)
-				{
-					JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to update slots","Error!", JOptionPane.ERROR_MESSAGE);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(ModifySlot.this, "Please choose a slot to update","Error!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
 		slotCheck.setBackground(new Color(180,180,240));
 		slotCheck.setForeground(Color.BLACK);
 		
-		// Clear slots button
-		JButton clearSlots = new JButton("Reset Slots");
-		clearSlots.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(list.getSelectedIndex() != 0)
-				{
-					int input = JOptionPane.showConfirmDialog(ModifySlot.this, "Do you want to really reset all slots of " + list.getSelectedItem().toString() + " ?","Are you sure?",JOptionPane.YES_NO_OPTION);
-					if( input == 0)
+			// Action Listener
+			slotCheck.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					// If Activity and Slot is chosen, increase slot by 1
+					if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
 					{
-						int ret = SlotDao.update(list.getSelectedItem().toString(),-1,list_slot.getSelectedIndex());
+						int ret = SlotDao.update(list.getSelectedItem().toString(),1,list_slot.getSelectedIndex());
 						if(ret == 1)
 						{
-							JOptionPane.showMessageDialog(ModifySlot.this,"All slots of "+list.getSelectedItem().toString()+" resetted successfully");
+							JOptionPane.showMessageDialog(ModifySlot.this,"Slot updated successfully!");
+						}
+						else if(ret == 0)
+						{
+							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, slot is not available!");
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error resetting!");
+							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!");
 						}
 					}
+					else if(list.getSelectedIndex() == 0)
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to update slots","Error!", JOptionPane.ERROR_MESSAGE);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose a slot to update","Error!", JOptionPane.ERROR_MESSAGE);
+					}
 				}
-				else
-				{
-					JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to reset slots","Error!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+			});
+		
+		// Clear slots button
+		JButton clearSlots = new JButton("Reset Slots");
 		clearSlots.setFont(new Font("Tahoma", Font.BOLD, 15));
 		clearSlots.setBackground(new Color(180,180,240));
 		clearSlots.setForeground(Color.BLACK);
 
+			// Adding action listener
+			clearSlots.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					// If a sport is selected
+					if(list.getSelectedIndex() != 0)
+					{
+						// Confirmation dialog box
+						int input = JOptionPane.showConfirmDialog(ModifySlot.this, "Do you want to really reset all slots of " + list.getSelectedItem().toString() + " ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+						if( input == 0)
+						{
+							int ret = SlotDao.update(list.getSelectedItem().toString(),-1,list_slot.getSelectedIndex());
+							if(ret == 1)
+							{
+								JOptionPane.showMessageDialog(ModifySlot.this,"All slots of "+list.getSelectedItem().toString()+" resetted successfully");
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error resetting!");
+							}
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to reset slots","Error!", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			});
+
 		// Back Button
 		JButton btnLogout = new JButton("Back");
-		btnLogout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int input = JOptionPane.showConfirmDialog(ModifySlot.this, "Do you want to really go back? " ,"Are you sure?",JOptionPane.YES_NO_OPTION);
-				if( input == 0)
-				{
-					GymkhanaSuccess.main(new String[]{});
-					frame.dispose();
-				}
-			}
-		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnLogout.setBackground(new Color(70,70,75));
 		btnLogout.setForeground(Color.BLACK);
+
+			// Action Listener
+			btnLogout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int input = JOptionPane.showConfirmDialog(ModifySlot.this, "Do you want to really go back? " ,"Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						GymkhanaSuccess.main(new String[]{});
+						frame.dispose();
+					}
+				}
+			});
 
 		// Horizontal and Vertical layout for the panel
 		GroupLayout gl_contentPane = new GroupLayout(bg);

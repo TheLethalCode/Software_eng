@@ -1,6 +1,9 @@
 import java.sql.*;
+
+// Class responsible for handling the user table in the database
 public class UserDao {
 
+	// Create the USER table in the database
 	public static void create()
 	{
 		try
@@ -23,6 +26,7 @@ public class UserDao {
 		}
 	}
 
+	// Create a new user
 	public static int save(String name,String password,String email,String id_no,String residence,String contact){
 		int status=0;
 		try{
@@ -36,9 +40,13 @@ public class UserDao {
 			ps.setString(6,contact);
 			status=ps.executeUpdate();
 			con.close();
-		}catch(Exception e){System.out.println(e);}
+		}catch(Exception e){
+			System.out.println(e);
+		}
 		return status;
 	}
+
+	// Delete the user with the particular ID
 	public static int delete(String id){
 		int status=0;
 		try{
@@ -51,6 +59,7 @@ public class UserDao {
 		return status;
 	}
 
+	// Check if user and password match
 	public static boolean validate(String id_no,String password){
 		boolean status=false;
 		try{
@@ -65,6 +74,7 @@ public class UserDao {
 		return status;
 	}
 
+	// Call to create the table
 	public static void main(String[] args) {
 		create();
 	}

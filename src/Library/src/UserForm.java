@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.sql.*;
 
+// Class responsible for adding new users to the database
+
 public class UserForm extends JFrame {
 	static UserForm frame;
 
@@ -248,8 +250,6 @@ public class UserForm extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					
-
 					String name=textFieldName.getText();
 					String password=String.valueOf(passwordField.getPassword());
 					String email=textFieldEmail.getText();
@@ -257,6 +257,7 @@ public class UserForm extends JFrame {
 					String residence = new String("Dummy");
 					String contact=textFieldContact.getText();
 
+					// Handle default textfield submissions
 					if(name.trim().equals("Enter username"))
 					{
 						JOptionPane.showMessageDialog(UserForm.this,"Name can't be blank","Error",JOptionPane.ERROR_MESSAGE);
@@ -279,6 +280,7 @@ public class UserForm extends JFrame {
 					}
 					else
 					{
+						// Confirmation Dialog Box
 						int input = JOptionPane.showConfirmDialog(UserForm.this, "Do you really want to add this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
 						if( input == 0)
 						{
@@ -307,6 +309,7 @@ public class UserForm extends JFrame {
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) 
 				{
+					// Confirmation Dialog Box
 					int input = JOptionPane.showConfirmDialog(UserForm.this, "Do you want to really quit in between ?","Are you sure?",JOptionPane.YES_NO_OPTION);
 					if( input == 0)
 					{

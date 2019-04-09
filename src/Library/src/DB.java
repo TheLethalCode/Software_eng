@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+// Class to access the database. Returns a connection to the database "test.db"
+
 public class DB {
 	public static Connection getConnection(){
 		Connection con=null;

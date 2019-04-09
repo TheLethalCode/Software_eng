@@ -6,6 +6,8 @@ import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+// Class responsible for the Gymkhana/Admin Login Form
+
 public class GymkhanaLogin extends JFrame {
 	static GymkhanaLogin frame;
 	private JTextField textField;
@@ -130,6 +132,7 @@ public class GymkhanaLogin extends JFrame {
 			}
 			});
 
+			// Enter key for logging in.
 			passwordField.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String name=textField.getText();
@@ -147,6 +150,7 @@ public class GymkhanaLogin extends JFrame {
 					}
 				}
 			});
+			
 		// The Login Button
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBackground(new Color(17, 12, 58));

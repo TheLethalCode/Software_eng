@@ -6,6 +6,8 @@ import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+// Class that handles the user login
+
 public class UserLogin extends JFrame {
 	static UserLogin frame;
 	private JPanel contentPane;
@@ -130,6 +132,7 @@ public class UserLogin extends JFrame {
 			}
 			});
 
+			// Adding enter key for login
 			passwordField.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String name=textField.getText();

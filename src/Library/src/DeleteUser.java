@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.sql.*;
 
+// Class responsible for deleting of an user by the admin
+
 public class DeleteUser extends JFrame {
 	static DeleteUser frame;
 	private JPanel contentPane;
@@ -103,29 +105,31 @@ public class DeleteUser extends JFrame {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFocusPainted(false);
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
-				String sid=textFieldID.getText();
-				if(sid.trim().equals("Enter ID")){
-					JOptionPane.showMessageDialog(DeleteUser.this,"Id can't be blank","Error",JOptionPane.ERROR_MESSAGE);
-				}
-				else
+
+			// Action Listener
+			btnDelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) 
 				{
-					int input = JOptionPane.showConfirmDialog(DeleteUser.this, "Do you want to really delete this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
-					if( input == 0)
+					String sid=textFieldID.getText();
+					if(sid.trim().equals("Enter ID")){
+						JOptionPane.showMessageDialog(DeleteUser.this,"Id can't be blank","Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else
 					{
-						String id=sid.trim();
-						int i=UserDao.delete(id);
-						if(i>0){
-							JOptionPane.showMessageDialog(DeleteUser.this,"Record deleted successfully!");
-						}else{
-							JOptionPane.showMessageDialog(DeleteUser.this,"Given ID doesn't exist!");
+						int input = JOptionPane.showConfirmDialog(DeleteUser.this, "Do you want to really delete this user ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+						if( input == 0)
+						{
+							String id=sid.trim();
+							int i=UserDao.delete(id);
+							if(i>0){
+								JOptionPane.showMessageDialog(DeleteUser.this,"Record deleted successfully!");
+							}else{
+								JOptionPane.showMessageDialog(DeleteUser.this,"Given ID doesn't exist!");
+							}
 						}
 					}
 				}
-			}
-		});
+			});
 		
 		// Back button
 		JButton btnBack = new JButton("Back");

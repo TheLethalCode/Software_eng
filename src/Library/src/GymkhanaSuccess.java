@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.sql.*;
 
+// The class responsible for the admin main page
+
 public class GymkhanaSuccess extends JFrame {
 	static GymkhanaSuccess frame;
 	private JPanel contentPane;
@@ -61,7 +63,7 @@ public class GymkhanaSuccess extends JFrame {
 		heading.setForeground(new Color(224,224,224));
 		heading.setFont(new Font("Tahoma", Font.BOLD, 31));
 
-		// button for adding new user
+		// Button for adding new user
 		JButton btnNewButton = new JButton("Add User");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.setBackground(new Color(25, 22, 28));
@@ -76,7 +78,7 @@ public class GymkhanaSuccess extends JFrame {
 				}
 			});
 		
-		// button for deleting user 
+		// Button for deleting user 
 		JButton btnDeleteUser = new JButton("Delete User");
 		btnDeleteUser.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnDeleteUser.setBackground(new Color(25, 22, 28));
@@ -91,14 +93,14 @@ public class GymkhanaSuccess extends JFrame {
 				}
 			});
 		
-		// button for modifying slots
+		// Button for modifying slots
 		JButton btnModifySlot = new JButton("Modify Slot");
 		btnModifySlot.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnModifySlot.setBackground(new Color(25, 22, 28));
         btnModifySlot.setForeground(Color.WHITE);
 		btnModifySlot.setFocusPainted(false);
 
-			// action listener for the button
+			// Action listener for the button
 			btnModifySlot.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					ModifySlot.main(new String[]{});
@@ -106,7 +108,7 @@ public class GymkhanaSuccess extends JFrame {
 				}
 			});
 		
-		// button for logout
+		// Button for logout
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnLogout.setBackground(new Color(25, 22, 28));

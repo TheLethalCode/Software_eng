@@ -5,9 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-
 import javax.swing.JTextArea;
+
+// The main class responsible for the front page.
+
 public class Management_System extends JFrame {
 
     static Management_System frame;
@@ -63,29 +64,34 @@ public class Management_System extends JFrame {
 
         // Login Button for Gymkhana Authorities
         JButton btnGymkhanaLogin = new JButton("Admin Login");
-		btnGymkhanaLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-            GymkhanaLogin.main(new String[]{});
-			frame.dispose();
-			}
-        });
         btnGymkhanaLogin.setBackground(new Color(7, 12, 8));
         btnGymkhanaLogin.setForeground(Color.WHITE);
         btnGymkhanaLogin.setFocusPainted(false);
-		btnGymkhanaLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
+        btnGymkhanaLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
+  
+            // Action listener
+            btnGymkhanaLogin.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                GymkhanaLogin.main(new String[]{});
+                frame.dispose();
+                }
+            });
+        
         
         // Login Button for Users
 		JButton btnUserLogin = new JButton("User Login");
-		btnUserLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				UserLogin.main(new String[]{});
-				frame.dispose();
-			}
-        });
         btnUserLogin.setBackground(new Color(5, 10, 6));
         btnUserLogin.setForeground(Color.WHITE);
         btnUserLogin.setFocusPainted(false);
         btnUserLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
+
+            // Action Listener
+            btnUserLogin.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent arg0) {
+                    UserLogin.main(new String[]{});
+                    frame.dispose();
+                }
+            });
 
          
         GroupLayout gl_contentPane = new GroupLayout(bg);

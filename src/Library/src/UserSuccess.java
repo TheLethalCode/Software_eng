@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 
+// CLass that handles the main page for the user
+
 public class UserSuccess extends JFrame {
 	static UserSuccess frame;
 	private JPanel contentPane;
@@ -72,6 +74,8 @@ public class UserSuccess extends JFrame {
 		JButton slotCheck = new JButton("Check Slots");
 		slotCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// If activity is selected
 				if(list.getSelectedIndex() != 0){
 					DisplaySlot.main(new String[]{ list.getSelectedItem().toString()});
 					frame.dispose();
@@ -88,19 +92,21 @@ public class UserSuccess extends JFrame {
 		
 		// Logout Button
 		JButton btnLogout = new JButton("Logout");
-		btnLogout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int input = JOptionPane.showConfirmDialog(UserSuccess.this, "Do you want to really logout ?","Are you sure?",JOptionPane.YES_NO_OPTION);
-				if( input == 0)
-				{
-					Management_System.main(new String[]{});
-					frame.dispose();
-				}
-			}
-		});
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnLogout.setBackground(new Color(17, 12, 18));
 		btnLogout.setForeground(Color.WHITE);
+
+			// Action Listener
+			btnLogout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int input = JOptionPane.showConfirmDialog(UserSuccess.this, "Do you want to really logout ?","Are you sure?",JOptionPane.YES_NO_OPTION);
+					if( input == 0)
+					{
+						Management_System.main(new String[]{});
+						frame.dispose();
+					}
+				}
+			});
 
 		// Horizontal and Vertical layout for the panel
 		GroupLayout gl_contentPane = new GroupLayout(bg);

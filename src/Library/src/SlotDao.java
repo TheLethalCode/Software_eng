@@ -1,6 +1,9 @@
 import java.sql.*;
+
+// Class responsible for handling the slot table in the database
 public class SlotDao {
 
+	// The function that creates the SLOT Table
 	public static void create()
 	{
 		try
@@ -23,6 +26,7 @@ public class SlotDao {
 		}
 	}
 	
+	// Intialise all sports with a default vacancy of 9
 	public static void initialise(String sport)
 	{
 		int status = 0;
@@ -30,16 +34,17 @@ public class SlotDao {
 			Connection con=DB.getConnection();
 			PreparedStatement ps=con.prepareStatement("insert into SLOT(sport,sl1,sl2,sl3,sl4,sl5) values(?,?,?,?,?,?)");
 			ps.setString(1,sport);
-			ps.setString(2,"10");
-			ps.setString(3,"10");
-			ps.setString(4,"10");
-			ps.setString(5,"10");
-			ps.setString(6,"10");
+			ps.setString(2,"9");
+			ps.setString(3,"9");
+			ps.setString(4,"9");
+			ps.setString(5,"9");
+			ps.setString(6,"9");
 			status=ps.executeUpdate();
 			con.close();
 		}catch(Exception e){System.out.println(e);}
 	}
 
+	// returns all the vacancies for a particular sport
 	public static int[] check(String sport)
 	{
 		int slot_vac[] = new int[]{0,0,0,0,0};
@@ -62,15 +67,19 @@ public class SlotDao {
 		return slot_vac;
 	}
 
-	// 0 means slot not available
-	// 1 means successful operation
-	// -1 means sql error
+	// Function for handling the slot updates and reset. Pass task = -1 for reset, task = 1 for booking
+	// return 0 means slot not available
+	// return 1 means successful operation
+	// return -1 means sql error
+
 	public static int update(String sport,int task,int slot)
 	{
 		boolean status=false;
 		try
 		{
 			Connection con=DB.getConnection();
+
+			// Resetting all slots to 9 vacancies
 			if( task == -1)
 			{
 				PreparedStatement ps=con.prepareStatement("UPDATE SLOT set sl1 = 9, sl2 = 9, sl3 = 9, sl4 = 9, sl5 = 9  where sport=?");
@@ -84,11 +93,14 @@ public class SlotDao {
 				return 1;
 			}
 	  
+			// Update for the particular slot
 			else if(task  == 1)
 			{
 				PreparedStatement ps=con.prepareStatement("select * from SLOT where sport=?");
 				ps.setString(1,sport);
 				ResultSet rs=ps.executeQuery();
+
+				// Check if there are vacancies
 				while ( rs.next() ) 
 				{
 					if(slot == 1)
@@ -144,6 +156,7 @@ public class SlotDao {
 				}
 				rs.close();
 
+				// Handle the update and decrease vacancy by 1
 				if( slot == 1)
 				{
 					ps=con.prepareStatement("UPDATE SLOT set sl1 = sl1 - 1 where sport=?");
@@ -218,7 +231,9 @@ public class SlotDao {
 		return 1;
 	}
 
+	// Call to create table from scratch
 	public static void main(String[] args) {
+
 		initialise("Badminton");
 		initialise("Gym");
 		initialise("Squash");

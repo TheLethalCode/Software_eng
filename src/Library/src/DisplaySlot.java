@@ -7,6 +7,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.sql.*;
 
+// Class responsible for the displaying of various slots of a sport
+
 public class DisplaySlot extends JFrame {
 	static DisplaySlot frame;
 
@@ -216,9 +218,10 @@ public class DisplaySlot extends JFrame {
 				}
 			});
 		
-		// Getting data from the database
+		// Getting data from the database for the slots
 		int slots[] = SlotDao.check(sport);
 		
+		// Setting the color and enable book button appropriately
 		slot1.setText(" "+slots[0]);
 		if( slots[0] == 0)
 		{
@@ -271,7 +274,7 @@ public class DisplaySlot extends JFrame {
 		btnBack.setFocusPainted(false);
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-			// Focus Listener
+			// Action Listener
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int input = JOptionPane.showConfirmDialog(DisplaySlot.this, "Do you want to go back ?","Are you sure?",JOptionPane.YES_NO_OPTION);
