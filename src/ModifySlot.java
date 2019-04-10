@@ -79,7 +79,7 @@ public class ModifySlot extends JFrame {
 		list.setForeground(new Color(10,0,18));
 
 		// The ComboBox of all possible slots
-		String[] slots = { "--- Choose Slot ---", "Slot 1" , "Slot 2" , "Slot 3" , "Slot 4" , "Slot 5" };
+		String[] slots = { "--- Choose Slot ---", "Slot 1: 5:30 am -6:30 am" , "Slot 2: 6:30 am - 7:30 am" , "Slot 3: 5 pm - 6 pm" , "Slot 4: 6 pm - 7 pm" , "Slot 5: 7 pm - 8 pm" };
 		JComboBox list_slot = new JComboBox(slots);
 		list_slot.setBackground(new Color(200,250,214));
 		list_slot.setForeground(new Color(10,0,18));

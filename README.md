@@ -1,6 +1,6 @@
 # Gymkhana Sports Management System
 
-This project was undertaken by [Kousshik Raj](https://www.github.com/TheLethalCode) and [Snehal Reddy](https://www.github.com/) under the guidance of Prof. Sudip Mishra for the course Software Engineering Laboratory (CS29006).
+This project was undertaken by [Kousshik Raj](https://www.github.com/TheLethalCode) and [Snehal Reddy](https://www.github.com/Snehal-Reddy) under the guidance of Prof. Sudip Mishra for the course Software Engineering Laboratory (CS29006).
 
 
 ## Objective
@@ -40,6 +40,11 @@ The Gymkhana Sports Management System is completely implemented in the JAVA prog
     ![alt text](screenshots/userMain.png)
 
 - For a particular sport, the vacanicies in all the slots are displayed. If there is a vacancy, then the user can book for that particular slot.
+    - Slot 1: 5:30 am - 6:30 am
+    - Slot 2: 6:30 am - 7:30 am
+    - Slot 3: 5:00 pm - 6:00 pm
+    - Slot 4: 6:00 pm - 7:00 pm
+    - Slot 5: 7:00 pm - 8:00 pm
 
     ![alt text](screenshots/slotDisplay.png)
 
