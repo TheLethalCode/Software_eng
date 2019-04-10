@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,12 +52,12 @@ public class ModifySlot extends JFrame {
 		
 		// Set Background Image
         try {
-            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/allsports.jpg"));
-            final Image bgima = backgroundImage.getScaledInstance(750, 500, Image.SCALE_DEFAULT);
+            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/userSuccess.jpg"));
+            final Image bgima = backgroundImage.getScaledInstance(635, 500, Image.SCALE_DEFAULT);
             bg = new JPanel(new BorderLayout()) {
                 @Override
                 public void paintComponent(Graphics g) {
-                    g.drawImage(bgima, -120, 0, null);
+                    g.drawImage(bgima, 0, 0, null);
                 }
             };
         } catch (IOException e) {
@@ -87,15 +85,27 @@ public class ModifySlot extends JFrame {
 		list_slot.setForeground(new Color(10,0,18));
 
 		//Radio Buttons
+		
+		// Book button
 		JRadioButton book = new JRadioButton(); 
-		book.setText("Book"); 
-		// book.setBackground(new Color(200,250,214));
-		// book.setForeground(new Color(10,0,18));
+		book.setText(" Book");
+		book.setForeground(Color.white); 
+		book.setOpaque(false);
+		book.setSelected(true);
+		book.setFont(new Font("Tahoma",Font.BOLD,17));
 
+		// Cancel button
 		JRadioButton cancel = new JRadioButton(); 
-		cancel.setText("Cancel"); 
-		// cancel.setBackground(new Color(200,250,214));
-		// cancel.setForeground(new Color(10,0,18));
+		cancel.setText(" Cancel");
+		cancel.setForeground(Color.white);
+		cancel.setOpaque(false);
+		cancel.setSelected(true);
+		cancel.setFont(new Font("Tahoma",Font.BOLD,17));
+
+		// Selecting only one of them
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(book);
+		buttonGroup.add(cancel);
 
 		// Check Slots button
 		JButton slotCheck = new JButton("Update Slot");
@@ -107,18 +117,19 @@ public class ModifySlot extends JFrame {
 			slotCheck.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					if(cancel.isSelected() && book.isSelected())
-					{
-						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose only one type of updation","Error!", JOptionPane.ERROR_MESSAGE);	
-					}
 					// If Activity and Slot is chosen, increase slot by 1
-					else if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
+					if(list.getSelectedIndex() != 0 && list_slot.getSelectedIndex() != 0)
 					{
 						int ret = 10;
+						// If cancel is selected, increase vacancy
 						if(cancel.isSelected())
 							ret = SlotDao.update(list.getSelectedItem().toString(),2,list_slot.getSelectedIndex());
+
+						// If book is selected, decrease vacancy
 						else if(book.isSelected())
 							ret = SlotDao.update(list.getSelectedItem().toString(),1,list_slot.getSelectedIndex());
+
+						// Handle return accorduingly	
 						if(ret == 1)
 						{
 							JOptionPane.showMessageDialog(ModifySlot.this,"Slot updated successfully!");
@@ -136,14 +147,12 @@ public class ModifySlot extends JFrame {
 							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!");
 						}
 					}
+
 					else if(list.getSelectedIndex() == 0)
 					{
 						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose an activity to update slots","Error!", JOptionPane.ERROR_MESSAGE);
 					}
-					else if(!cancel.isSelected() && !book.isSelected())
-					{
-						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose type of updation","Error!", JOptionPane.ERROR_MESSAGE);	
-					}
+
 					else if(list_slot.getSelectedIndex() == 0)
 					{
 						JOptionPane.showMessageDialog(ModifySlot.this, "Please choose a slot to update","Error!", JOptionPane.ERROR_MESSAGE);
@@ -189,8 +198,8 @@ public class ModifySlot extends JFrame {
 		// Back Button
 		JButton btnLogout = new JButton("Back");
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnLogout.setBackground(new Color(70,70,75));
-		btnLogout.setForeground(Color.BLACK);
+		btnLogout.setBackground(new Color(17, 12, 18));
+		btnLogout.setForeground(Color.WHITE);
 
 			// Action Listener
 			btnLogout.addActionListener(new ActionListener() {
@@ -223,12 +232,17 @@ public class ModifySlot extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(20)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(book, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-										.addComponent(cancel, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGap(20)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(book, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+												.addComponent(cancel, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+											)
+										)
 										.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 										.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 									)
-									.addGap(75)
+									.addGap(60)
 									.addComponent(btnLogout)
 								)
 							)
@@ -247,15 +261,15 @@ public class ModifySlot extends JFrame {
 					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(list_slot,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(68)
+					.addGap(53)
 					.addComponent(book,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(20)
+					.addGap(12)
 					.addComponent(cancel,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(slotCheck,GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
 					.addComponent(clearSlots, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
+					.addGap(22)
 					.addComponent(btnLogout)
 				)
 		);

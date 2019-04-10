@@ -67,10 +67,11 @@ public class SlotDao {
 		return slot_vac;
 	}
 
-	// Function for handling the slot updates and reset. Pass task = -1 for reset, task = 1 for booking
+	// Function for handling the slot updates and reset. Pass task = -1 for reset, task = 1 for booking, task = 2 for cancelling
 	// return 0 means slot not available
 	// return 1 means successful operation
 	// return -1 means sql error
+	// return 2 means no cancellation possible
 
 	public static int update(String sport,int task,int slot)
 	{
@@ -222,7 +223,8 @@ public class SlotDao {
 					return 1;
 				}
 			}
-			//cancel task
+
+			// cancel sot
 			else if(task  == 2)
 			{
 				PreparedStatement ps=con.prepareStatement("select * from SLOT where sport=?");
@@ -285,7 +287,7 @@ public class SlotDao {
 				}
 				rs.close();
 
-				// Handle the update and decrease vacancy by 1
+				// Handle the update and increase vacancy by 1
 				if( slot == 1)
 				{
 					ps=con.prepareStatement("UPDATE SLOT set sl1 = sl1 + 1 where sport=?");

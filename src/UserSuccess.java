@@ -44,12 +44,12 @@ public class UserSuccess extends JFrame {
 		
 		// Set Background Image
         try {
-            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/userSuccess.jpg"));
-            final Image bgima = backgroundImage.getScaledInstance(635, 500, Image.SCALE_DEFAULT);
+            Image backgroundImage = javax.imageio.ImageIO.read(new File("images/allsports.jpg"));
+            final Image bgima = backgroundImage.getScaledInstance(750, 500, Image.SCALE_DEFAULT);
             bg = new JPanel(new BorderLayout()) {
                 @Override
                 public void paintComponent(Graphics g) {
-                    g.drawImage(bgima, 0, 0, null);
+                    g.drawImage(bgima, -100, 0, null);
                 }
             };
         } catch (IOException e) {
@@ -67,34 +67,36 @@ public class UserSuccess extends JFrame {
 		// The ComboBox of all possible sports
 		String[] sports = { "--- Choose Activity ---", "Badminton" , "Gym" , "Squash" , "Table Tennis" , "Swimming", "Tennis", "BasketBall" };
 		JComboBox list = new JComboBox(sports);
-		list.setBackground(new Color(43,54,54));
-		list.setForeground(new Color(210,180,180));
+		list.setBackground(new Color(200,250,214));
+		list.setForeground(new Color(10,0,18));
 		
 		// Check Slots button
 		JButton slotCheck = new JButton("Check Slots");
-		slotCheck.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				// If activity is selected
-				if(list.getSelectedIndex() != 0){
-					DisplaySlot.main(new String[]{ list.getSelectedItem().toString()});
-					frame.dispose();
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(UserSuccess.this, "Please choose an activity from the drop down list","Error!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		slotCheck.setFont(new Font("Tahoma", Font.BOLD, 15));
-		slotCheck.setBackground(new Color(17, 12, 18));
-		slotCheck.setForeground(Color.WHITE);
+		slotCheck.setBackground(new Color(180,180,240));
+		slotCheck.setForeground(Color.BLACK);
+
+			// Add Action Listener
+			slotCheck.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					// If activity is selected
+					if(list.getSelectedIndex() != 0){
+						DisplaySlot.main(new String[]{ list.getSelectedItem().toString()});
+						frame.dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(UserSuccess.this, "Please choose an activity from the drop down list","Error!", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			});
 		
 		// Logout Button
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnLogout.setBackground(new Color(17, 12, 18));
-		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(new Color(180,180,240));
+		btnLogout.setForeground(Color.BLACK);
 
 			// Action Listener
 			btnLogout.addActionListener(new ActionListener() {
@@ -121,7 +123,7 @@ public class UserSuccess extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(list, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(26)
+									.addGap(30)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 										.addComponent(slotCheck)
@@ -142,9 +144,9 @@ public class UserSuccess extends JFrame {
 					.addGap(58)
 					.addComponent(list,GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(188)
-					.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addComponent(slotCheck, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 				)
 		);
 		bg.setLayout(gl_contentPane);
