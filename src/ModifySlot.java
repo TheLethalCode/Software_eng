@@ -136,15 +136,15 @@ public class ModifySlot extends JFrame {
 						}
 						else if(ret == 0)
 						{
-							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, slot is not available!");
+							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, slot is not available!","Error!", JOptionPane.ERROR_MESSAGE);
 						}
 						else if(ret == 2)
 						{
-							JOptionPane.showMessageDialog(ModifySlot.this,"Slots are all empty, can't cancel!");
+							JOptionPane.showMessageDialog(ModifySlot.this,"Slots are all empty, can't cancel!","Error!", JOptionPane.ERROR_MESSAGE);
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!");
+							JOptionPane.showMessageDialog(ModifySlot.this,"Sorry, error updating!","Error!", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 
